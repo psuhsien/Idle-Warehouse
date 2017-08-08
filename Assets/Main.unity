@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 19139734}
   - component: {fileID: 19139733}
   m_Layer: 5
-  m_Name: Service1Btn
+  m_Name: Service0Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 32473356}
   - component: {fileID: 32473355}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service2BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 45138667}
   - component: {fileID: 45138666}
   m_Layer: 5
-  m_Name: Service2Name
+  m_Name: Service1Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ RectTransform:
   m_Children:
   - {fileID: 2116604276}
   m_Father: {fileID: 115593623}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 108876189}
   - component: {fileID: 108876188}
   m_Layer: 5
-  m_Name: Service7Btn
+  m_Name: Service6Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -803,8 +803,8 @@ RectTransform:
   - {fileID: 956796149}
   - {fileID: 872019502}
   - {fileID: 395643348}
-  - {fileID: 258243158}
   - {fileID: 45482308}
+  - {fileID: 258243158}
   m_Father: {fileID: 1051793480}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -892,7 +892,7 @@ GameObject:
   - component: {fileID: 116651854}
   - component: {fileID: 116651853}
   m_Layer: 5
-  m_Name: Service4Name
+  m_Name: Service3Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1073,7 +1073,7 @@ GameObject:
   - component: {fileID: 159294804}
   - component: {fileID: 159294803}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service1BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1149,7 +1149,7 @@ GameObject:
   - component: {fileID: 227380631}
   - component: {fileID: 227380630}
   m_Layer: 5
-  m_Name: Service4Info
+  m_Name: Service3Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1199,7 +1199,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -1244,7 +1244,7 @@ RectTransform:
   m_Children:
   - {fileID: 2065595396}
   m_Father: {fileID: 115593623}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1336,7 +1336,7 @@ GameObject:
   - component: {fileID: 308319146}
   - component: {fileID: 308319145}
   m_Layer: 5
-  m_Name: Service3Img
+  m_Name: Service2Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1478,7 +1478,7 @@ GameObject:
   - component: {fileID: 322160095}
   - component: {fileID: 322160094}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service0BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1666,7 +1666,7 @@ GameObject:
   - component: {fileID: 415354902}
   - component: {fileID: 415354901}
   m_Layer: 5
-  m_Name: Service6Btn
+  m_Name: Service5Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1885,7 +1885,7 @@ GameObject:
   - component: {fileID: 506289367}
   - component: {fileID: 506289366}
   m_Layer: 5
-  m_Name: Service3Name
+  m_Name: Service2Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2098,7 +2098,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 58492651}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2138,6 +2138,80 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 531262067}
+--- !u!1 &540170025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 540170026}
+  - component: {fileID: 540170028}
+  - component: {fileID: 540170027}
+  m_Layer: 5
+  m_Name: TimeCount
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &540170026
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540170025}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1051793480}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 720, y: -362.47}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &540170027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540170025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 8
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '[Time Count]'
+--- !u!222 &540170028
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 540170025}
 --- !u!1 &551384239
 GameObject:
   m_ObjectHideFlags: 0
@@ -2257,7 +2331,7 @@ GameObject:
   - component: {fileID: 698447591}
   - component: {fileID: 698447590}
   m_Layer: 5
-  m_Name: Service1Info
+  m_Name: Service0Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,7 +2381,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -2333,7 +2407,7 @@ GameObject:
   - component: {fileID: 698787064}
   - component: {fileID: 698787063}
   m_Layer: 5
-  m_Name: Service6Name
+  m_Name: Service5Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2407,7 +2481,7 @@ GameObject:
   - component: {fileID: 778887331}
   - component: {fileID: 778887330}
   m_Layer: 5
-  m_Name: Service2Img
+  m_Name: Service1Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2676,7 +2750,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 30.006523}
+  m_AnchoredPosition: {x: 0, y: 177.70001}
   m_SizeDelta: {x: 0, y: 560.7}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &872019501
@@ -2801,7 +2875,7 @@ GameObject:
   - component: {fileID: 910396412}
   - component: {fileID: 910396411}
   m_Layer: 5
-  m_Name: Service1Name
+  m_Name: Service0Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2876,6 +2950,7 @@ GameObject:
   - component: {fileID: 948512794}
   - component: {fileID: 948512793}
   - component: {fileID: 948512792}
+  - component: {fileID: 948512797}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2953,6 +3028,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &948512797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 948512791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19a2dd52726e7b489141e0faf86a7e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &956796148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3038,7 +3124,7 @@ GameObject:
   - component: {fileID: 993057547}
   - component: {fileID: 993057546}
   m_Layer: 5
-  m_Name: Service5Info
+  m_Name: Service4Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3088,7 +3174,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3114,7 +3200,7 @@ GameObject:
   - component: {fileID: 998300521}
   - component: {fileID: 998300520}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service5BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3190,7 +3276,7 @@ GameObject:
   - component: {fileID: 1047615196}
   - component: {fileID: 1047615195}
   m_Layer: 5
-  m_Name: Service5Name
+  m_Name: Service4Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3345,6 +3431,7 @@ RectTransform:
   - {fileID: 780351709}
   - {fileID: 115593623}
   - {fileID: 1270540402}
+  - {fileID: 540170026}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3375,7 +3462,7 @@ GameObject:
   - component: {fileID: 1071356720}
   - component: {fileID: 1071356719}
   m_Layer: 5
-  m_Name: CurrentCpS
+  m_Name: CurCpS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3451,7 +3538,7 @@ GameObject:
   - component: {fileID: 1175705466}
   - component: {fileID: 1175705465}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service3BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3527,7 +3614,7 @@ GameObject:
   - component: {fileID: 1237488239}
   - component: {fileID: 1237488238}
   m_Layer: 5
-  m_Name: Service4Img
+  m_Name: Service3Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3595,7 +3682,7 @@ GameObject:
   - component: {fileID: 1266009500}
   - component: {fileID: 1266009499}
   m_Layer: 5
-  m_Name: Service6Info
+  m_Name: Service5Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3645,7 +3732,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -3746,7 +3833,7 @@ MonoBehaviour:
   m_Content: {fileID: 808574712}
   m_Horizontal: 1
   m_Vertical: 1
-  m_MovementType: 1
+  m_MovementType: 2
   m_Elasticity: 0.1
   m_Inertia: 1
   m_DecelerationRate: 0.135
@@ -3774,7 +3861,7 @@ GameObject:
   - component: {fileID: 1298932493}
   - component: {fileID: 1298932492}
   m_Layer: 5
-  m_Name: CurrentCurrency
+  m_Name: CurCurrency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3851,7 +3938,7 @@ GameObject:
   - component: {fileID: 1346688753}
   - component: {fileID: 1346688752}
   m_Layer: 5
-  m_Name: Service4Btn
+  m_Name: Service3Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3962,7 +4049,7 @@ GameObject:
   - component: {fileID: 1359902827}
   - component: {fileID: 1359902826}
   m_Layer: 5
-  m_Name: Service3Btn
+  m_Name: Service2Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4248,7 +4335,7 @@ GameObject:
   - component: {fileID: 1455482699}
   - component: {fileID: 1455482698}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service4BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4468,7 +4555,7 @@ GameObject:
   - component: {fileID: 1514843115}
   - component: {fileID: 1514843114}
   m_Layer: 5
-  m_Name: Service1Img
+  m_Name: Service0Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4702,7 +4789,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1621359246}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 948512797}
+        m_MethodName: BoxClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1680842044
@@ -4716,7 +4814,7 @@ GameObject:
   - component: {fileID: 1680842047}
   - component: {fileID: 1680842046}
   m_Layer: 5
-  m_Name: Service7Name
+  m_Name: Service6Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4790,7 +4888,7 @@ GameObject:
   - component: {fileID: 1728520939}
   - component: {fileID: 1728520938}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Service6BtnTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4866,7 +4964,7 @@ GameObject:
   - component: {fileID: 1748096009}
   - component: {fileID: 1748096008}
   m_Layer: 5
-  m_Name: Service5Img
+  m_Name: Service4Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4934,7 +5032,7 @@ GameObject:
   - component: {fileID: 1786205785}
   - component: {fileID: 1786205784}
   m_Layer: 5
-  m_Name: Service7Info
+  m_Name: Service6Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4984,7 +5082,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5010,7 +5108,7 @@ GameObject:
   - component: {fileID: 1806034383}
   - component: {fileID: 1806034382}
   m_Layer: 5
-  m_Name: Service6Img
+  m_Name: Service5Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5078,7 +5176,7 @@ GameObject:
   - component: {fileID: 1829231269}
   - component: {fileID: 1829231268}
   m_Layer: 5
-  m_Name: Service7Img
+  m_Name: Service6Img
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5210,7 +5308,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134184168}
   m_HandleRect: {fileID: 2134184167}
   m_Direction: 2
-  m_Value: 0.8311394
+  m_Value: 0
   m_Size: 0.6830747
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -5262,7 +5360,7 @@ GameObject:
   - component: {fileID: 1935691093}
   - component: {fileID: 1935691092}
   m_Layer: 5
-  m_Name: Service2Info
+  m_Name: Service1Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5312,7 +5410,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5338,7 +5436,7 @@ GameObject:
   - component: {fileID: 1947723978}
   - component: {fileID: 1947723977}
   m_Layer: 5
-  m_Name: Service3Info
+  m_Name: Service2Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5388,7 +5486,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -5601,7 +5699,7 @@ GameObject:
   - component: {fileID: 2071292055}
   - component: {fileID: 2071292054}
   m_Layer: 5
-  m_Name: Service5Btn
+  m_Name: Service4Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5966,7 +6064,7 @@ GameObject:
   - component: {fileID: 2147217721}
   - component: {fileID: 2147217720}
   m_Layer: 5
-  m_Name: Service2Btn
+  m_Name: Service1Btn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
