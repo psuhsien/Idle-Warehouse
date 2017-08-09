@@ -8,9 +8,10 @@ public class GameManager : MonoBehaviour {
 
     
     public static int curCurrency;
-    int curCpS;
+    public static int curCpS;
+    int serviceInd;
     float timeCount = 0.0f;
-    Service[] serviceList;
+    public static Service[] serviceList;
 
     private Text timeCountTxt;
     private Text curCurrencyTxt;
@@ -46,7 +47,9 @@ public class GameManager : MonoBehaviour {
         curCurrency = 0;
         curCpS = 0;
 
-        InvokeRepeating("SecondUpdate", 1.0f, 1.0f);
+        InvokeRepeating("UpdateCurCurrency", 1.0f, 1.0f);
+        InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
+        InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
 
         timeCountTxt = GameObject.Find("TimeCount").GetComponent<Text>();
         curCurrencyTxt = GameObject.Find("CurCurrency").GetComponent<Text>();
@@ -80,10 +83,34 @@ public class GameManager : MonoBehaviour {
 
         curCurrencyTxt.text = "Currency\n" + curCurrency;
         curCpSTxt.text = "Currency Per Second\n" + curCpS;
-	}
 
-    void SecondUpdate()
+        ServiceBtnCheck();
+    }
+
+    void UpdateCurCurrency() { curCurrency += curCpS; }
+    
+    void ServiceCheckAndUnlock()
     {
-        curCurrency += curCpS;
+        if ( curCurrency >= serviceList[serviceInd].GetBaseCost())
+        {
+            serviceList[serviceInd].Unlock();
+            serviceInd++;
+        }
+
+        if (serviceInd >= 7)
+            CancelInvoke("ServiceCheckAndUnlock");
+    }
+    
+    void ServiceBtnCheck()
+    {
+        for (int i = 0; i < serviceList.Length; i++)
+        {
+            Button curBtn = serviceList[i].GetBtn();
+
+            if (serviceList[i].GetcurrentCost() > curCurrency)
+                curBtn.interactable = false;
+            else
+                curBtn.interactable = true;
+        }
     }
 }
