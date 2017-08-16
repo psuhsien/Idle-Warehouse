@@ -7,8 +7,8 @@ using System;
 public class GameManager : MonoBehaviour {
 
     
-    public static int curCurrency;
-    public static int curCpS;
+    public static double curCurrency;
+    public static double curCpS;
     int serviceInd;
     float timeCount = 0.0f;
     public static Service[] serviceList;
@@ -38,18 +38,19 @@ public class GameManager : MonoBehaviour {
 	
     void InitList()
     {
+        InitService();
         InitGame();
-        InitService();                  
     }
 
     void InitGame()
     {
-        curCurrency = 0;
+        curCurrency = 88;
         curCpS = 0;
 
         InvokeRepeating("UpdateCurCurrency", 1.0f, 1.0f);
         InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
-        InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
+//        InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
+//        InvokeRepeating("ServiceUpgradeBtnCheck", 1.0f, 1.0f);
 
         timeCountTxt = GameObject.Find("TimeCount").GetComponent<Text>();
         curCurrencyTxt = GameObject.Find("CurCurrency").GetComponent<Text>();
@@ -85,6 +86,7 @@ public class GameManager : MonoBehaviour {
         curCpSTxt.text = "Currency Per Second\n" + curCpS;
 
         ServiceBtnCheck();
+        ServiceUpgradeBtnCheck();
     }
 
     void UpdateCurCurrency() { curCurrency += curCpS; }
@@ -111,6 +113,32 @@ public class GameManager : MonoBehaviour {
                 curBtn.interactable = false;
             else
                 curBtn.interactable = true;
+        }
+    }
+
+    void ServiceUpgradeBtnCheck()
+    {
+        for (int i = 0; i < serviceList.Length; i++)
+        {
+            Button[] curBtn = serviceList[i].GetUpgradeBtn();
+            double[] curCost = serviceList[i].GetUpgradeCost();
+
+            for (int j = 0; j < curCost.Length; j++)
+            {
+                if (curCost[j] > 0)
+                {
+                    if (curCost[j] > curCurrency)
+                        curBtn[j].interactable = false;
+                    else
+                        curBtn[j].interactable = true;
+                }
+                else if (curCost[j] == -1)
+                {
+                    curCost[j] = -2;
+                    curBtn[j].interactable = false;
+                }
+            }
+
         }
     }
 }
