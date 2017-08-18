@@ -7,13 +7,14 @@ using System;
 public class GameManager : MonoBehaviour {
 
     
-    public static double curCurrency;
-    public static double curCpS;
+    static double curCurrency;
+    double curCpS;
+    private double totalCurrencyEarn;
     int serviceInd;
     float timeCount = 0.0f;
     public static Service[] serviceList;
 
-    private Text timeCountTxt;
+    private Text infoTxt;
     private Text curCurrencyTxt;
     private Text curCpSTxt;
 
@@ -44,15 +45,17 @@ public class GameManager : MonoBehaviour {
 
     void InitGame()
     {
-        curCurrency = 88;
+        curCurrency = 880;
         curCpS = 0;
+        totalCurrencyEarn = 0;
 
         InvokeRepeating("UpdateCurCurrency", 1.0f, 1.0f);
+        InvokeRepeating("UpdateTotalCurrencyEarn", 1.0f, 1.0f);
         InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
-//        InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
-//        InvokeRepeating("ServiceUpgradeBtnCheck", 1.0f, 1.0f);
+        //InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
+        //InvokeRepeating("ServiceUpgradeBtnCheck", 1.0f, 1.0f);
 
-        timeCountTxt = GameObject.Find("TimeCount").GetComponent<Text>();
+        infoTxt = GameObject.Find("InfoTxt").GetComponent<Text>();
         curCurrencyTxt = GameObject.Find("CurCurrency").GetComponent<Text>();
         curCpSTxt = GameObject.Find("CurCpS").GetComponent<Text>();
     }
@@ -75,12 +78,20 @@ public class GameManager : MonoBehaviour {
 
 	void Update () {
 
+        //transform.position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        //GameObject.Find("Button").GetComponent<Button>().transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        
+
         timeCount += Time.deltaTime;
 
         TimeSpan timeSpan = TimeSpan.FromSeconds((int)timeCount);
 
-        timeCountTxt.text = string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}", 
-            timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+        infoTxt.text = "Total Game Time: " + string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
+            timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds) + "\n" +
+            "Total Currency Earn: " + totalCurrencyEarn;
+
+        UpdateCurCpS();
 
         curCurrencyTxt.text = "Currency\n" + curCurrency;
         curCpSTxt.text = "Currency Per Second\n" + curCpS;
@@ -90,7 +101,18 @@ public class GameManager : MonoBehaviour {
     }
 
     void UpdateCurCurrency() { curCurrency += curCpS; }
-    
+    void UpdateTotalCurrencyEarn() { totalCurrencyEarn += curCpS; }
+
+    void UpdateCurCpS()
+    {
+        double newCurCpS = 0;
+
+        for (int i = 0; i < serviceList.Length; i++)
+            newCurCpS += serviceList[i].GetTotalCpS();
+
+        curCpS = newCurCpS;
+    }
+
     void ServiceCheckAndUnlock()
     {
         if ( curCurrency >= serviceList[serviceInd].GetBaseCost())
@@ -109,7 +131,7 @@ public class GameManager : MonoBehaviour {
         {
             Button curBtn = serviceList[i].GetBtn();
 
-            if (serviceList[i].GetcurrentCost() > curCurrency)
+            if (serviceList[i].GetcurCost() > curCurrency)
                 curBtn.interactable = false;
             else
                 curBtn.interactable = true;
@@ -140,5 +162,13 @@ public class GameManager : MonoBehaviour {
             }
 
         }
+    }
+
+    public static void CurCurrencyOP(char sym, double value)
+    {
+        if (sym == '-')
+            curCurrency -= value;
+        else if (sym == '+')
+            curCurrency += value;
     }
 }
