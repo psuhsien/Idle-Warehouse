@@ -26,8 +26,6 @@ public class Service {
 
     GameObject toolTip;
 
-    EventTrigger[] upgradeBtnTrigger;
-
     public Service(String title, int baseCost, int baseCpS, int serviceInd)
     {
         this.title = title;

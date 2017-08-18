@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
 
     void InitGame()
     {
-        curCurrency = 880;
+        curCurrency = 0;
         curCpS = 0;
         totalCurrencyEarn = 0;
 
