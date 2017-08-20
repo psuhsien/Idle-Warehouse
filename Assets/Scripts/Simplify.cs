@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using UnityEngine;
 
 public class Simplify {
 
@@ -9,7 +10,7 @@ public class Simplify {
     {
         listLargeNumName = new String[102];
 
-        string path = "Assets/Resources/ListOfLargeNumberNames.txt";
+        string path = Application.dataPath + "/StreamingAssets/" + "ListOfLargeNumberNames.txt";
 
         StreamReader reader = new StreamReader(path);
 

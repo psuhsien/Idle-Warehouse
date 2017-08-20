@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Service {
-    
+
 
     String title;
     double baseCost;
@@ -44,7 +44,7 @@ public class Service {
         infoTxt = GameObject.Find("Service" + serviceInd + "Info").GetComponent<Text>();
         btnTxt = GameObject.Find("Service" + serviceInd + "BtnTxt").GetComponent<Text>();
         btn = GameObject.Find("Service" + serviceInd + "Btn").GetComponent<Button>();
-        
+
         for (int i = 0; i < 10; i++)
         {
             int buttonInd = i;
@@ -55,11 +55,9 @@ public class Service {
             upgradeTxt[i] = GameObject.Find("Service" + serviceInd + "Upgrade" + (i + 1) + "Txt").GetComponent<Text>();
             upgradeCost[i] = baseCost * Math.Pow(10, (i + 1));
         }
-        
-        titleTxt.text = "???";
-        infoTxt.text = "Level:???\n" + "CpS:???";
-        btnTxt.text = "Level Up +???\n" + "??? Currency";
-        
+
+        LockUI();
+
     }
 
     public double GetBaseCost() { return baseCost; }
@@ -77,6 +75,12 @@ public class Service {
     {
         titleTxt.text = title;
         UpdateUI();
+    }
+
+    public void LockUI() {
+        titleTxt.text = "???";
+        infoTxt.text = "Level:???\n" + "CpS:???";
+        btnTxt.text = "Level Up +???\n" + "??? Currency";
     }
 
     public void LevelUp()
@@ -104,17 +108,17 @@ public class Service {
     
     public void UpgradeBtnAddEventTrigger(Button upgradeBtn, int buttonInd)
     {
-        EventTrigger trigger = upgradeBtn.GetComponent<EventTrigger>();
+        EventTrigger btnTrigger = upgradeBtn.GetComponent<EventTrigger>();
 
         EventTrigger.Entry entry = new EventTrigger.Entry();
         entry.eventID = EventTriggerType.PointerEnter;
         entry.callback.AddListener((eventData) => { ToolTipPointerEnter(buttonInd); });
-        trigger.triggers.Add(entry);
+        btnTrigger.triggers.Add(entry);
 
-        EventTrigger.Entry entry2 = new EventTrigger.Entry();
-        entry2.eventID = EventTriggerType.PointerExit;
-        entry2.callback.AddListener((eventData) => { ToolTipPointerExit(buttonInd); });
-        trigger.triggers.Add(entry2);
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerExit;
+        entry.callback.AddListener((eventData) => { ToolTipPointerExit(buttonInd); });
+        btnTrigger.triggers.Add(entry);
     }
 
     public void ToolTipPointerEnter(int buttonInd)
@@ -176,6 +180,7 @@ public class Service {
 
         UpdateCurrentCpS();
         UpdateUnitCpS();
-        UpdateUI();
+
+        LockUI();
     }
 }

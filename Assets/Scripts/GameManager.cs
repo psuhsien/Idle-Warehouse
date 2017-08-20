@@ -53,8 +53,8 @@ public class GameManager : MonoBehaviour {
         InvokeRepeating("UpdateTotalCurrencyEarn", 1.0f, 1.0f);
         InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
 
-        curCurrencyTxt = GameObject.Find("CurCurrency").GetComponent<Text>();
-        curCpSTxt = GameObject.Find("CurCpS").GetComponent<Text>();
+        curCurrencyTxt = GameObject.Find("CurCurrencyTxt").GetComponent<Text>();
+        curCpSTxt = GameObject.Find("CurCpSTxt").GetComponent<Text>();
     }
 
     void InitService()
@@ -178,8 +178,6 @@ public class GameManager : MonoBehaviour {
         progressStr += serviceList[serviceList.Length - 1].GenProgress() + ";";
 
         progressStr += gameInfo.GenProgress();
-
-        Debug.Log(progressStr.Split(';').Length);
 
         return progressStr;
     }

@@ -10779,7 +10779,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 343.25
+  orthographic size: 170.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -10802,7 +10802,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948512791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 616.5, y: 339, z: -10}
+  m_LocalPosition: {x: 616.5, y: 360, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12194,7 +12194,7 @@ GameObject:
   - component: {fileID: 1071356720}
   - component: {fileID: 1071356719}
   m_Layer: 5
-  m_Name: CurCpS
+  m_Name: CurCpSTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14026,7 +14026,7 @@ GameObject:
   - component: {fileID: 1298932493}
   - component: {fileID: 1298932492}
   m_Layer: 5
-  m_Name: CurCurrency
+  m_Name: CurCurrencyTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20248,8 +20248,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2134184168}
   m_HandleRect: {fileID: 2134184167}
   m_Direction: 2
-  m_Value: 0.00000017173645
-  m_Size: 0.68307465
+  m_Value: 0
+  m_Size: 0.6830747
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
