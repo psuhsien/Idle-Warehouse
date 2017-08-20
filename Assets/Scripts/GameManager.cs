@@ -163,7 +163,10 @@ public class GameManager : MonoBehaviour {
         if (sym == '-')
             curCurrency -= value;
         else if (sym == '+')
+        {
             curCurrency += value;
+            gameInfo.UpdateTotalCurrencyEarn(value);
+        }
     }
 
     public static string GenProgress()
