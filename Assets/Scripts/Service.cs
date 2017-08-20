@@ -40,8 +40,6 @@ public class Service {
         upgradeCost = new double[10];
         multiplier = 1;
 
-        upgradeBtnTrigger = new EventTrigger[10];
-
         titleTxt = GameObject.Find("Service" + serviceInd + "Name").GetComponent<Text>();
         infoTxt = GameObject.Find("Service" + serviceInd + "Info").GetComponent<Text>();
         btnTxt = GameObject.Find("Service" + serviceInd + "BtnTxt").GetComponent<Text>();
@@ -78,8 +76,7 @@ public class Service {
     public void Unlock()
     {
         titleTxt.text = title;
-        infoTxt.text = "Level: 0\n" + "CpS: " + baseCpS;
-        btnTxt.text = "Level Up + 1\n" + baseCost + " Currency";
+        UpdateUI();
     }
 
     public void LevelUp()
@@ -101,6 +98,8 @@ public class Service {
         UpdateCurrentCpS();
         UpdateUnitCpS();
         UpdateUI();
+
+        GameManager.Destroy(toolTip);
     }
     
     public void UpgradeBtnAddEventTrigger(Button upgradeBtn, int buttonInd)
@@ -123,15 +122,14 @@ public class Service {
         if (upgradeCost[buttonInd] == -1 || upgradeCost[buttonInd] == -2)
             return;
 
-
         toolTip = (GameObject) GameManager.Instantiate(Resources.Load("ToolTip"), 
             GameObject.Find("Canvas").GetComponent<Canvas>().transform);
         toolTip.transform.position = new Vector3(upgradeBtn[buttonInd].transform.position.x, 
             upgradeBtn[buttonInd].transform.position.y + 20, 0);
 
-        Text ToolTipTxt = GameObject.Find("ToolTipTxt").GetComponent<Text>();
+        Text ToolTipTxt = toolTip.transform.Find("ToolTipTxt").gameObject.GetComponent<Text>();
 
-        ToolTipTxt.text = title + " produce twice\n" + "Cost: " + upgradeCost[buttonInd];
+        ToolTipTxt.text = title + " produce twice\n" + "Cost: " + Simplify.LargeNumConvert(upgradeCost[buttonInd]);
         toolTip.GetComponent<RectTransform>().sizeDelta = new Vector2(ToolTipTxt.preferredWidth, ToolTipTxt.preferredHeight);
     }
 
@@ -148,12 +146,36 @@ public class Service {
 
     public void UpdateUI()
     {
-        infoTxt.text = "Level: " + curLevel + "\n" + "Total CpS:" + totalCpS;
-        btnTxt.text = "Level Up + " + unitCpS + "\n" + curCost + " Currency";
+        infoTxt.text = "Level: " + curLevel + "\n" + "Total CpS:" + Simplify.LargeNumConvert(totalCpS);
+        btnTxt.text = "Level Up + " + Simplify.LargeNumConvert(unitCpS) + " CpS\n" + Simplify.LargeNumConvert(curCost) + " Currency";
     }
 
-    public void test()
+    public string GenProgress()
     {
-        
+        string progressStr = "";
+
+        progressStr += curLevel + "," + curCost;
+
+        for (int i = 0; i < upgradeCost.Length; i++)
+            progressStr += "," + upgradeCost[i];
+
+        progressStr += "," + multiplier;
+
+        return progressStr;
+    }
+
+    public void LoadProgress(string[] split)
+    {
+        curLevel = Convert.ToInt32(split[0]);
+        curCost = Convert.ToDouble(split[1]);
+
+        for (int i = 0; i < upgradeCost.Length; i++)
+            upgradeCost[i] = Convert.ToDouble(split[i + 2]);
+
+        multiplier = Convert.ToInt32(split[12]);
+
+        UpdateCurrentCpS();
+        UpdateUnitCpS();
+        UpdateUI();
     }
 }

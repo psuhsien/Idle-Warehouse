@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.IO;
 
 public class GameManager : MonoBehaviour {
 
-    
     static double curCurrency;
-    double curCpS;
-    private double totalCurrencyEarn;
+    static double curCpS;
     int serviceInd;
-    float timeCount = 0.0f;
+
+    static GameInfo gameInfo;
     public static Service[] serviceList;
 
-    private Text infoTxt;
-    private Text curCurrencyTxt;
-    private Text curCpSTxt;
+    Text curCurrencyTxt;
+    Text curCpSTxt;
 
     public static GameManager instance = null;
     
@@ -40,6 +39,8 @@ public class GameManager : MonoBehaviour {
     void InitList()
     {
         InitService();
+        InitGameInfo();
+        Simplify.InitLargeNumName();
         InitGame();
     }
 
@@ -47,15 +48,11 @@ public class GameManager : MonoBehaviour {
     {
         curCurrency = 0;
         curCpS = 0;
-        totalCurrencyEarn = 0;
 
         InvokeRepeating("UpdateCurCurrency", 1.0f, 1.0f);
         InvokeRepeating("UpdateTotalCurrencyEarn", 1.0f, 1.0f);
         InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
-        //InvokeRepeating("ServiceBtnCheck", 1.0f, 1.0f);
-        //InvokeRepeating("ServiceUpgradeBtnCheck", 1.0f, 1.0f);
 
-        infoTxt = GameObject.Find("InfoTxt").GetComponent<Text>();
         curCurrencyTxt = GameObject.Find("CurCurrency").GetComponent<Text>();
         curCpSTxt = GameObject.Find("CurCpS").GetComponent<Text>();
     }
@@ -75,33 +72,30 @@ public class GameManager : MonoBehaviour {
             serviceList[i] = new Service(serviceNameArr[i], baseCostArr[i], baseCpSArr[i], i);
     }
 
+    void InitGameInfo()
+    {
+        gameInfo = new GameInfo();
+    }
 
 	void Update () {
-
-        //transform.position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        //GameObject.Find("Button").GetComponent<Button>().transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //Debug.Log(Camera.main.ScreenToWorldPoint(Input.mousePosition));
-        
-
-        timeCount += Time.deltaTime;
-
-        TimeSpan timeSpan = TimeSpan.FromSeconds((int)timeCount);
-
-        infoTxt.text = "Total Game Time: " + string.Format("{0:D2}:{1:D2}:{2:D2}:{3:D2}",
-            timeSpan.Days, timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds) + "\n" +
-            "Total Currency Earn: " + totalCurrencyEarn;
+        gameInfo.UpdateGameInfoUI();
 
         UpdateCurCpS();
 
-        curCurrencyTxt.text = "Currency\n" + curCurrency;
-        curCpSTxt.text = "Currency Per Second\n" + curCpS;
+        UpdateProgressInfoUI();
 
         ServiceBtnCheck();
         ServiceUpgradeBtnCheck();
     }
 
+    void UpdateProgressInfoUI()
+    {
+        curCurrencyTxt.text = "Currency\n" + Simplify.LargeNumConvert(curCurrency);
+        curCpSTxt.text = "Currency Per Second\n" + Simplify.LargeNumConvert(curCpS);
+    }
+
     void UpdateCurCurrency() { curCurrency += curCpS; }
-    void UpdateTotalCurrencyEarn() { totalCurrencyEarn += curCpS; }
+    void UpdateTotalCurrencyEarn() { gameInfo.UpdateTotalCurrencyEarn(curCpS); }
 
     void UpdateCurCpS()
     {
@@ -115,7 +109,7 @@ public class GameManager : MonoBehaviour {
 
     void ServiceCheckAndUnlock()
     {
-        if ( curCurrency >= serviceList[serviceInd].GetBaseCost())
+        if (curCurrency >= serviceList[serviceInd].GetBaseCost())
         {
             serviceList[serviceInd].Unlock();
             serviceInd++;
@@ -170,5 +164,56 @@ public class GameManager : MonoBehaviour {
             curCurrency -= value;
         else if (sym == '+')
             curCurrency += value;
+    }
+
+    public static string GenProgress()
+    {
+        string progressStr = "";
+
+        progressStr += curCurrency + "," + curCpS + ";";
+
+        for (int i = 0; i < serviceList.Length - 1; i++)
+            progressStr += serviceList[i].GenProgress() + ":";
+
+        progressStr += serviceList[serviceList.Length - 1].GenProgress() + ";";
+
+        progressStr += gameInfo.GenProgress();
+
+        Debug.Log(progressStr.Split(';').Length);
+
+        return progressStr;
+    }
+
+    public static void LoadProgress(string progressStr)
+    {
+        string[] strSplit = progressStr.Split(';');
+
+        string[] split3 = strSplit[2].Split(',');
+        gameInfo.LoadProgress(split3);
+
+        string[] split2 = strSplit[1].Split(':');
+
+        for (int i = 0; i < serviceList.Length; i++)
+            serviceList[i].LoadProgress(split2[i].Split(','));
+
+
+        string[] split1 = strSplit[0].Split(',');
+
+        curCurrency = Convert.ToDouble(split1[0]);
+        curCpS = Convert.ToDouble(split1[1]);
+    }
+
+    public static void WipeProgress()
+    {
+        LoadProgress("0,0;" +
+            "0,8,80,800,8000,80000,800000,8000000,80000000,800000000,8000000000,80000000000,1:" +
+            "0,64,640,6400,64000,640000,6400000,64000000,640000000,6400000000,64000000000,640000000000,1:" +
+            "0,512,5120,51200,512000,5120000,51200000,512000000,5120000000,51200000000,512000000000,5120000000000,1:" +
+            "0,4096,40960,409600,4096000,40960000,409600000,4096000000,40960000000,409600000000,4096000000000," +
+            "40960000000000,1:0,32768,327680,3276800,32768000,327680000,3276800000,32768000000,327680000000," +
+            "3276800000000,32768000000000,327680000000000,1:0,262144,2621440,26214400,262144000,2621440000," +
+            "26214400000,262144000000,2621440000000,26214400000000,262144000000000,2.62144E+15,1:0,2097152,20971520," +
+            "209715200,2097152000,20971520000,209715200000,2097152000000,20971520000000,209715200000000," +
+            "2.097152E+15,2.097152E+16,1;1.173811,0");
     }
 }
