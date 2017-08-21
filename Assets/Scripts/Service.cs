@@ -26,6 +26,7 @@ public class Service {
 
     GameObject toolTip;
 
+    // Default constructor
     public Service(String title, int baseCost, int baseCpS, int serviceInd)
     {
         this.title = title;
@@ -45,6 +46,7 @@ public class Service {
         btnTxt = GameObject.Find("Service" + serviceInd + "BtnTxt").GetComponent<Text>();
         btn = GameObject.Find("Service" + serviceInd + "Btn").GetComponent<Button>();
 
+        // Init each upgrade button and assign event to the upgrade button
         for (int i = 0; i < 10; i++)
         {
             int buttonInd = i;
@@ -60,6 +62,7 @@ public class Service {
 
     }
 
+    // Getter function
     public double GetBaseCost() { return baseCost; }
     public double GetCurLevel() { return curLevel; }
     public double GetTotalCpS() { return totalCpS; }
@@ -69,20 +72,24 @@ public class Service {
     public Text[] GetUpgradeTxt() { return upgradeTxt; }
     public double[] GetUpgradeCost() { return upgradeCost; }
 
+    // Calculate next level cost
     public double CalCurrentCost() { return Math.Floor(baseCost * Math.Pow(fixedVal, curLevel)); }
 
+    // Show service's info when reach require cost
     public void Unlock()
     {
         titleTxt.text = title;
         UpdateUI();
     }
 
+    // Lock service info till it reach require cost
     public void LockUI() {
         titleTxt.text = "???";
         infoTxt.text = "Level:???\n" + "CpS:???";
         btnTxt.text = "Level Up +???\n" + "??? Currency";
     }
 
+    // Level up service by one
     public void LevelUp()
     {
         GameManager.CurCurrencyOP('-', curCost);
@@ -93,6 +100,7 @@ public class Service {
         UpdateUI();
     }
 
+    // When a service upgrade button is hit
     public void Upgrade(int buttonInd)
     {
         upgradeCost[buttonInd] = -1;
@@ -106,6 +114,7 @@ public class Service {
         GameManager.Destroy(toolTip);
     }
     
+    // Add pointer enter and pointer exit event to the service upgrade button
     public void UpgradeBtnAddEventTrigger(Button upgradeBtn, int buttonInd)
     {
         EventTrigger btnTrigger = upgradeBtn.GetComponent<EventTrigger>();
@@ -121,6 +130,7 @@ public class Service {
         btnTrigger.triggers.Add(entry);
     }
 
+    // When pointer enter service upgrade button, tool tip will be appear
     public void ToolTipPointerEnter(int buttonInd)
     {
         if (upgradeCost[buttonInd] == -1 || upgradeCost[buttonInd] == -2)
@@ -137,6 +147,7 @@ public class Service {
         toolTip.GetComponent<RectTransform>().sizeDelta = new Vector2(ToolTipTxt.preferredWidth, ToolTipTxt.preferredHeight);
     }
 
+    // Destory tool tip when pointer exit service upgrade button
     public void ToolTipPointerExit(int buttonInd)
     {
         if (upgradeCost[buttonInd] == -1 || upgradeCost[buttonInd] == -2)
@@ -145,15 +156,20 @@ public class Service {
         GameManager.Destroy(toolTip);
     }
 
+    // Update current CpS
     public void UpdateCurrentCpS() { totalCpS = curLevel * baseCpS * multiplier; }
+
+    // Update Unit CpS
     public void UpdateUnitCpS() { unitCpS = baseCpS * multiplier; }
 
+    // Update service UI on the game
     public void UpdateUI()
     {
         infoTxt.text = "Level: " + curLevel + "\n" + "Total CpS:" + Simplify.LargeNumConvert(totalCpS);
         btnTxt.text = "Level Up + " + Simplify.LargeNumConvert(unitCpS) + " CpS\n" + Simplify.LargeNumConvert(curCost) + " Currency";
     }
 
+    // Generate save progress for service
     public string GenProgress()
     {
         string progressStr = "";
@@ -168,6 +184,7 @@ public class Service {
         return progressStr;
     }
 
+    // Load save progress into service
     public void LoadProgress(string[] split)
     {
         curLevel = Convert.ToInt32(split[0]);

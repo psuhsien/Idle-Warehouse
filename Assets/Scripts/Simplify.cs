@@ -6,6 +6,7 @@ public class Simplify {
 
     static string[] listLargeNumName;
 
+    // Read name of large number file
     public static void InitLargeNumName()
     {
         listLargeNumName = new String[102];
@@ -22,6 +23,7 @@ public class Simplify {
         }
     }
 
+    // Covert value into name of large number
     public static String LargeNumConvert(double value)
     {
         if (value < 1000000)

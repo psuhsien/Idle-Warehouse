@@ -9,6 +9,7 @@ public class EventTriggerList : MonoBehaviour {
     GameObject settingBackground;
     GameObject wipeTxtBackground;
 
+    // run when the game start
     public void Start()
     {
         saveLoadField = GameObject.Find("SaveLoadField").GetComponent<InputField>();
@@ -24,6 +25,8 @@ public class EventTriggerList : MonoBehaviour {
 
     public void ServiceUpgradeClick(int ind, int num) { GameManager.serviceList[ind].Upgrade(num); }
 
+    // Save, Load, or Wipe button click
+    // Save = 1, Load = 2, and Wipe = 3
     public void SaveLoadWipeClick(int OPCode)
     {
         settingBackground.SetActive(true);
@@ -55,8 +58,11 @@ public class EventTriggerList : MonoBehaviour {
 
     public void ConfirmClick()
     {
+        // saveLoadField active = Save or Load button
+        // otherwise Wipe button
         if (saveLoadField.IsActive())
         {
+            // if saveLoadField is editable = Load button
             if (!saveLoadField.readOnly)
             {
                 GameManager.LoadProgress(saveLoadField.text);
@@ -70,6 +76,7 @@ public class EventTriggerList : MonoBehaviour {
         settingBackground.SetActive(false);
     }
 
+    // Turn off settingBackground object
     public void CancelClick()
     {
         settingBackground.SetActive(false);

@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour {
         Screen.SetResolution(1600, 900, false);
 	}
 	
+    // List of Init when game start
     void InitList()
     {
         InitService();
@@ -44,11 +45,13 @@ public class GameManager : MonoBehaviour {
         InitGame();
     }
 
+    // List of Init on GameManager
     void InitGame()
     {
         curCurrency = 0;
         curCpS = 0;
 
+        // After game start, after one second, run following function every one sec 
         InvokeRepeating("UpdateCurCurrency", 1.0f, 1.0f);
         InvokeRepeating("UpdateTotalCurrencyEarn", 1.0f, 1.0f);
         InvokeRepeating("ServiceCheckAndUnlock", 1.0f, 1.0f);
@@ -57,6 +60,7 @@ public class GameManager : MonoBehaviour {
         curCpSTxt = GameObject.Find("CurCpSTxt").GetComponent<Text>();
     }
 
+    // Init for service
     void InitService()
     {
         int[] baseCostArr = new int[] { 8, 64, 512, 4096, 32768, 262144, 2097152 };
@@ -72,11 +76,13 @@ public class GameManager : MonoBehaviour {
             serviceList[i] = new Service(serviceNameArr[i], baseCostArr[i], baseCpSArr[i], i);
     }
 
+    // Init for GameInfo
     void InitGameInfo()
     {
         gameInfo = new GameInfo();
     }
 
+    // Running once every frame
 	void Update () {
         gameInfo.UpdateGameInfoUI();
 
@@ -88,15 +94,21 @@ public class GameManager : MonoBehaviour {
         ServiceUpgradeBtnCheck();
     }
 
+    // Running once every frame
+    // Update progress info on the game
     void UpdateProgressInfoUI()
     {
         curCurrencyTxt.text = "Currency\n" + Simplify.LargeNumConvert(curCurrency);
         curCpSTxt.text = "Currency Per Second\n" + Simplify.LargeNumConvert(curCpS);
     }
 
+    // Running every one second
+    // update curCurrency and totall currency earn on gameInfo
     void UpdateCurCurrency() { curCurrency += curCpS; }
     void UpdateTotalCurrencyEarn() { gameInfo.UpdateTotalCurrencyEarn(curCpS); }
 
+    // Running once every frame
+    // Gather every CpS from each service
     void UpdateCurCpS()
     {
         double newCurCpS = 0;
@@ -107,6 +119,9 @@ public class GameManager : MonoBehaviour {
         curCpS = newCurCpS;
     }
 
+    // Running every one second
+    // If curCurrency met service requirement then unlock the service
+    // Once every service is unlock, the function will stop running
     void ServiceCheckAndUnlock()
     {
         if (curCurrency >= serviceList[serviceInd].GetBaseCost())
@@ -119,6 +134,8 @@ public class GameManager : MonoBehaviour {
             CancelInvoke("ServiceCheckAndUnlock");
     }
     
+    // Running once every frame
+    // Service level up button enable when curCurrency met cost requirement
     void ServiceBtnCheck()
     {
         for (int i = 0; i < serviceList.Length; i++)
@@ -132,6 +149,9 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Running once every frame
+    // Service upgrade button enable when curCurrency met cost requirement
+    // Disable service upgrade button once upgrade click
     void ServiceUpgradeBtnCheck()
     {
         for (int i = 0; i < serviceList.Length; i++)
@@ -158,6 +178,8 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // CurCurrency operation (- or +)
+    // update total currency earn
     public static void CurCurrencyOP(char sym, double value)
     {
         if (sym == '-')
@@ -169,6 +191,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    // Generate save progress for GameManager
     public static string GenProgress()
     {
         string progressStr = "";
@@ -185,6 +208,7 @@ public class GameManager : MonoBehaviour {
         return progressStr;
     }
 
+    // Load save progress into GameManager
     public static void LoadProgress(string progressStr)
     {
         string[] strSplit = progressStr.Split(';');
@@ -204,6 +228,8 @@ public class GameManager : MonoBehaviour {
         curCpS = Convert.ToDouble(split1[1]);
     }
 
+    // Wipe save progress
+    // Load everything into default
     public static void WipeProgress()
     {
         LoadProgress("0,0;" +

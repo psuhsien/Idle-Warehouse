@@ -4,11 +4,12 @@ using UnityEngine.UI;
 
 public class GameInfo {
 
-    float timeCount;
-    double totalCurrencyEarn;
+    float timeCount;            // Sotre time count
+    double totalCurrencyEarn;   // Store total currency earn so far
 
-    static Text infoTxt;
+    Text infoTxt;
 
+    // Default constructor
     public GameInfo()
     {
         timeCount = 0.0f;
@@ -17,6 +18,8 @@ public class GameInfo {
         infoTxt = GameObject.Find("InfoTxt").GetComponent<Text>();
     }
 
+    // Update game info panel
+    // update time and total currency earn 
     public  void UpdateGameInfoUI()
     {
         timeCount += Time.deltaTime;
@@ -28,11 +31,13 @@ public class GameInfo {
             "Total Currency Earn: " + Simplify.LargeNumConvert(totalCurrencyEarn);
     }
 
+    // Increase total currency earn
     public  void UpdateTotalCurrencyEarn(double value)
     {
         totalCurrencyEarn += value;
     }
 
+    // Generate save progress for game info
     public string GenProgress()
     {
         string progressStr = "";
@@ -42,6 +47,9 @@ public class GameInfo {
         return progressStr;
     }
 
+    // Load save into game info
+    // split[0] = timeCount
+    // split[1] = totalCurrencyEarn
     public void LoadProgress(String[] split)
     {
         timeCount = Convert.ToSingle(split[0]);
